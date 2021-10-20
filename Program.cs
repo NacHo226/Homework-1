@@ -2,17 +2,12 @@ using System;
 
 namespace ConsoleApp1
 {
-    class First{//для проверки отличий object and dynamic
-        public First(){}
-        public void test(string str){}
-    }
-
-    class Second{
-        public Second(){}
-        public void test(string str, int i){}
-    }
     class Program
     {
+        public static void ConsoleWrite(string inputArg)
+        {
+            Console.WriteLine(inputArg);
+        }
         static void Main(string[] args)
         {
             int i = -455;
@@ -33,11 +28,16 @@ namespace ConsoleApp1
             string s1 = "Hello ", s2 = "world!", s3 = s1 + s2;
             Console.WriteLine(s3);
             
-            dynamic myObj=new First();
-            myObj.test("some string");//ok
-            myObj=new Second();
-            //myObj.test("some string");// runtime error,
-                                      // требуется сигнатура test(string,int). То же самое будет если вызвать не существующий метод
+            object obj = "String Sample";
+            //ConsoleWrite(obj);// compile error
+            ConsoleWrite((string)obj); // correct
+
+            dynamic dyn = "String Sample";
+            ConsoleWrite(dyn); // correct
+            dyn = 1;
+            //ConsoleWrite(dyn);// Runtime Error
+
         }
     }
+    
 }
